@@ -151,7 +151,104 @@ public class select_bill_activity extends AppCompatActivity {
         dialog.create().show();//show dialog
     }
 
+    private void pickGallery() {
+        // intent to pick from gallery
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        //set intent Type to image
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
+    }
 
+    private void pickCamera() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "NewPic");//title of the picture
+        values.put(MediaStore.Images.Media.DESCRIPTION, "Image To Text");//description
+        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
+        startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA_CODE);
+    }
+
+    private void requestStoragePermission() {
+        ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
+
+    }
+
+    private boolean checkStoragePermission() {
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        return result;
+    }
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
+    }
+
+
+    private boolean checkCameraPermission() {
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        return result && result1;
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case CAMERA_REQUEST_CODE:
+                if (grantResults.length > 0){
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccept =grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if(cameraAccepted && writeStorageAccept){
+                        pickCamera();
+                    }
+                    else{
+                        Toast.makeText(this,"permission denied", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                break;
+
+            case STORAGE_REQUEST_CODE:
+                if (grantResults.length > 0){
+                    boolean writeStorageAccept = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if(writeStorageAccept){
+                        pickGallery();
+                    }
+                    else{
+                        Toast.makeText(this,"permission denied", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
+    }
+
+
+    //handle image result
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
+                //got image from gallery new crop it
+                CropImage.activity(data.getData())
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .start(this);
+            }
+            if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+                //got Image from camera how crop it
+                try {
+                    CropImage.activity(image_uri)
+                            .setGuidelines(CropImageView.Guidelines.ON)
+                            .start(this);
+                }
+                catch (Exception e)
+                {
+                    Log.d("er",e.toString());
+                }
+            }
+        }
 }
 
 
