@@ -1,32 +1,23 @@
 package com.example.divvipay;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
-
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.SparseArray;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,15 +28,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -72,7 +60,7 @@ public class select_bill_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_bill_activity);
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar=getSupportActionBar();
         actionBar.setSubtitle("Click + button to select bill");
 
         mResultEt = findViewById(R.id.resultEt);
@@ -84,12 +72,13 @@ public class select_bill_activity extends AppCompatActivity {
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         //
-        Next = (Button) findViewById(R.id.next);
+        Next=(Button)findViewById(R.id.next);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mResultEt.getText().toString() != "") {
+                if (mResultEt.getText().toString()!="")
+                {
                     Intent intent = new Intent();
                     intent.putExtra("bill", BillAmount);
                     setResult(RESULT_OK, intent);
@@ -249,6 +238,70 @@ public class select_bill_activity extends AppCompatActivity {
                 }
             }
         }
+
+
+
+        //get croped image
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+
+                mPreviewIv.setImageURI(resultUri);
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) mPreviewIv.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+
+                TextRecognizer recognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+
+                if (!recognizer.isOperational()) {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                    ;
+                } else {
+                    Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                    SparseArray<TextBlock> items = recognizer.detect(frame);
+                    StringBuilder sh = new StringBuilder();
+                    for (int i = 0; i < items.size(); i++) {
+                        TextBlock myItem = items.valueAt(i);
+                        sh.append(myItem.getValue());
+                        sh.append("\n");
+                    }
+
+                    /*StringBuilder number =new StringBuilder("");
+                    for (int i = 0; i < sh.length(); i++)
+                        if (sh.charAt(i) >= '0' && sh.charAt(i) <= '9')
+                            number.append(sh.charAt(i));
+                            number.append("\n");*/
+
+                    // /float seperate
+                    List<String> allMatches = new ArrayList<String>();
+                    Matcher m = Pattern.compile("[-+]?\\d*\\.\\d+").matcher(sh.toString());
+                    while (m.find()) {
+                        allMatches.add(m.group());
+                    }
+
+                    if(allMatches.toString().equalsIgnoreCase(""))
+                    {
+                        mResultEt.setText("No Bill Found, Try Again or Enter Manually");
+
+                    }
+                    else
+                    {
+                        mResultEt.setText("Amount" + allMatches.toString());
+                        BillAmount=allMatches.get(0).toString();
+                        Next.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+                Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+    }
 }
 
 
