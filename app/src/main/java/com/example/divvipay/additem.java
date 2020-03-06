@@ -14,6 +14,8 @@ public class additem {
     }
 
 
+
+
     public String getDate() {
         return date;
     }
@@ -29,7 +31,6 @@ public class additem {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getGroup_id() {
         return group_id;
