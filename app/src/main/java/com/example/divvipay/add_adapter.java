@@ -35,6 +35,7 @@ public class add_adapter extends ArrayAdapter<additem> {
     private LayoutInflater inflater;
     private Context mContext;
     private List<additem> list;
+    
     AdView mAdView;
 
 
