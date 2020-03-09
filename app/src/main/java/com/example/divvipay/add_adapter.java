@@ -35,7 +35,9 @@ public class add_adapter extends ArrayAdapter<additem> {
     private LayoutInflater inflater;
     private Context mContext;
     private List<additem> list;
+    
     AdView mAdView;
+
 
     public add_adapter (Context context, int resourceId, List<additem> list) {
         super(context, 0, list);
@@ -46,6 +48,8 @@ public class add_adapter extends ArrayAdapter<additem> {
 
 
     }
+
+
 
     private static class ViewHolder {
         TextView date;
@@ -156,6 +160,8 @@ public class add_adapter extends ArrayAdapter<additem> {
         }
         return view;
     }
+
+
 
     @Override
     public void remove(additem remitm) {
