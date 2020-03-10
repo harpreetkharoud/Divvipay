@@ -39,7 +39,6 @@ public class add_adapter extends ArrayAdapter<additem> {
     
     AdView mAdView;
 
-
     public add_adapter (Context context, int resourceId, List<additem> list) {
         super(context, 0, list);
         mSelectedItemsIds = new SparseBooleanArray();
