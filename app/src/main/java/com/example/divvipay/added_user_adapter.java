@@ -21,6 +21,7 @@ public class added_user_adapter extends BaseAdapter implements ListAdapter {
         this.groupUserNo=groupUserNo;
         this.context=context;
         this.i=i;
+       // this.i=i;
     }
 
     @Override
