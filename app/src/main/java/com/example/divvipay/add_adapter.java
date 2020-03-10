@@ -30,6 +30,7 @@ import java.util.List;
  * adapter class for AddPlace
  * */
 
+
 public class add_adapter extends ArrayAdapter<additem> {
     private SparseBooleanArray mSelectedItemsIds;
     private LayoutInflater inflater;
