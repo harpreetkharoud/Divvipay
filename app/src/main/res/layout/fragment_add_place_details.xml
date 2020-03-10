@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        >
+
+
+
+    <EditText
+        android:id="@+id/Textplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textCursorDrawable="@drawable/cursorcolor"
+        android:inputType="textFilter|textMultiLine"
+        android:background="@drawable/buttonshape"
+        android:padding="5dp"
+        android:maxLength="40"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Trip Place,Type etc"
+        />
+
+
+
+<!--    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editno"
+        android:inputType="number"
+        android:background="@drawable/buttonshape"
+        android:padding="5dp"
+        android:maxLength="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="No of participants"
+        />-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshape"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/daye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:layout_below="@+id/editno"
+            android:hint="select date"
+            />
+
+        <Button
+            android:id="@+id/daypickbut"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/white"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/button_selector"
+            android:text="Select" />
+
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/buttonshape"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            android:layout_marginRight="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Group Admin"
+            android:padding="5dp"
+            android:textSize="18sp"
+            />
+
+        <CheckBox
+            android:id="@+id/add_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Error"
+            android:padding="5dp"/>
+        </LinearLayout>
+
+    <EditText
+        android:id="@+id/friend_Name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="participant Name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/buttonshape"
+        android:padding="5dp"
+        android:textCursorDrawable="@drawable/cursorcolor"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@drawable/buttonshape"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:ccp_showFullName="true"
+            android:gravity="center"
+            app:ccp_showPhoneCode="true"
+            app:ccp_showNameCode="true"/>
+
+        <EditText
+            android:id="@+id/friend_Number"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="50dp"
+
+            android:hint="participant number"
+            android:background="#ffff"
+            android:inputType="phone"
+            android:maxLength="20"
+            />
+
+        <ImageView
+            android:id="@+id/contact_list"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_agenda"
+            android:tint="@color/appcolor"/>
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="40dp"
+            android:layout_below="@+id/editno"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/friend_name"
+            android:text="ADD"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_selector"
+            />
+    </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/linearMain"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nouser"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="No user added"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <!--<TableLayout
+            android:id="@+id/linearMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            android:stretchColumns="*"
+            android:background="@drawable/buttonshape"/>-->
+
+    <Button
+        android:text="CREATE"
+        android:id="@+id/button_SUBMIT"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_selector"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</ScrollView>
