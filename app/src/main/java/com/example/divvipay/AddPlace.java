@@ -62,7 +62,6 @@ import java.util.Vector;
 import static android.content.Context.MODE_PRIVATE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -75,7 +74,7 @@ public class AddPlace extends Fragment {
     ArrayList<String> member_match=new ArrayList<>();
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> money=new ArrayList<>();
-    Vector<Integer> vec =new Vector<>();
+//    Vector<Integer> vec =new Vector<>();
 
     ArrayList<String> groupName=new ArrayList<>();
     ArrayList<String> time=new ArrayList<>();
