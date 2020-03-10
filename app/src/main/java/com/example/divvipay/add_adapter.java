@@ -30,6 +30,7 @@ import java.util.List;
  * adapter class for AddPlace
  * */
 
+
 public class add_adapter extends ArrayAdapter<additem> {
     private SparseBooleanArray mSelectedItemsIds;
     private LayoutInflater inflater;
@@ -37,7 +38,6 @@ public class add_adapter extends ArrayAdapter<additem> {
     private List<additem> list;
     
     AdView mAdView;
-
 
     public add_adapter (Context context, int resourceId, List<additem> list) {
         super(context, 0, list);
