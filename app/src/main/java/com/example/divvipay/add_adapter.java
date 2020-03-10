@@ -73,7 +73,7 @@ public class add_adapter extends ArrayAdapter<additem> {
                 @Override
                 public void onAdLoaded() {
                     // Code to be executed when an ad finishes loading.
-
+                    // Code to be executed when an ad finishes loading.
                 }
 
                 @Override
