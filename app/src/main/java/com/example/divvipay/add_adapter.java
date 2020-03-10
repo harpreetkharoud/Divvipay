@@ -64,7 +64,8 @@ public class add_adapter extends ArrayAdapter<additem> {
 
         if((position) % 5 == 0 && position != 0)
         {
-            view = inflater.inflate(R.layout.admob, null);
+            view = inflater.inflate(R.layout.admob,
+                    null);
 
             mAdView = view.findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
