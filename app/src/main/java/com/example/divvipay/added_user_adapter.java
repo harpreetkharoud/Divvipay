@@ -13,6 +13,11 @@ import java.util.ArrayList;
 
 public class added_user_adapter extends BaseAdapter implements ListAdapter {
 
+
+
+
+
+
     private ArrayList<String> groupUserNo = new ArrayList<String>();
     private Context context;
     int i;
