@@ -1,6 +1,5 @@
 <application>
   <component name="HttpConfigurable">
-    <option name="PROXY_HOST" value="langara.bc.ca" />
     <option name="PROXY_PORT" value="8080" />
   </component>
 </application>
