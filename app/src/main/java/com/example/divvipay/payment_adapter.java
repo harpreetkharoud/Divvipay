@@ -32,7 +32,6 @@ public class payment_adapter extends BaseAdapter {
        this.list_items=list_items;
        this.resultarr=resultarr;
 
-
     }
 
     @Override
