@@ -13,7 +13,6 @@ public  class get_pre_value {
         this.name=name;
     }
 
-
     public String getMoney() {
         return money;
     }
