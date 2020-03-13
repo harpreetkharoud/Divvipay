@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+
+    <ListView
+        android:id="@+id/list_above"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <TextView
+        android:id="@+id/noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No Record Found"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:gravity="center_horizontal|center_vertical"/>
+</RelativeLayout>

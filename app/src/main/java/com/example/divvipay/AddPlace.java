@@ -62,7 +62,6 @@ import java.util.Vector;
 import static android.content.Context.MODE_PRIVATE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -76,6 +75,7 @@ public class AddPlace extends Fragment {
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> money=new ArrayList<>();
     Vector<Integer> vec =new Vector<>();
+
 
     ArrayList<String> groupName=new ArrayList<>();
     ArrayList<String> time=new ArrayList<>();
@@ -155,7 +155,7 @@ public class AddPlace extends Fragment {
                         VTD.putExtra("gid",gid);
                         startActivity(VTD);
 
-                   //   Toast.makeText(getActivity(),str+gid,Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(getActivity(),str+gid,Toast.LENGTH_SHORT).show();
 
 
 
@@ -298,7 +298,7 @@ public class AddPlace extends Fragment {
                     else {
                         pd.dismiss();
                         listView.setVisibility(View.GONE);
-                       NoData.setVisibility(View.VISIBLE);
+                        NoData.setVisibility(View.VISIBLE);
 
 
                     }
@@ -330,7 +330,7 @@ public class AddPlace extends Fragment {
                     GROUNP_ID=map.keySet().toArray(new String[map.size()]);
                     for(j=0;j<GROUNP_ID.length;j++)
                     {
-                         check=0;
+                        check=0;
                         member.clear();
                         member_match.clear();
                         if(GroupId.contains(GROUNP_ID[j]))
@@ -415,69 +415,69 @@ public class AddPlace extends Fragment {
     }
 
     private void getAmonut() {
-       for ( l=0;l<id.size(); l++)
-       {
+        for ( l=0;l<id.size(); l++)
+        {
 
 
-           String a=id.get(l);
+            String a=id.get(l);
 
-           DatabaseReference ref_id_pre = FirebaseDatabase.getInstance().getReference("GroupDetail/"+a+"/final_result/split_result");
-           ref_id_pre.addListenerForSingleValueEvent(new ValueEventListener() {
-               @Override
-               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            DatabaseReference ref_id_pre = FirebaseDatabase.getInstance().getReference("GroupDetail/"+a+"/final_result/split_result");
+            ref_id_pre.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                   name.clear();
-                   money.clear();
+                    name.clear();
+                    money.clear();
 
-                   if(dataSnapshot.getValue()!=null)
-                   {
-                       GenericTypeIndicator<List<get_pre_value>> t = new GenericTypeIndicator<List<get_pre_value>>() {
-                       };
-                       List<get_pre_value> messages = dataSnapshot.getValue(t);
-                       int a = messages.size();
-                       for (int  i = 0; i < a; i++) {
+                    if(dataSnapshot.getValue()!=null)
+                    {
+                        GenericTypeIndicator<List<get_pre_value>> t = new GenericTypeIndicator<List<get_pre_value>>() {
+                        };
+                        List<get_pre_value> messages = dataSnapshot.getValue(t);
+                        int a = messages.size();
+                        for (int  i = 0; i < a; i++) {
 
-                           name.add(messages.get(i).getName());
-                           money.add(messages.get(i).getMoney());
-                       }
+                            name.add(messages.get(i).getName());
+                            money.add(messages.get(i).getMoney());
+                        }
 
-                       for (int j=0;j<name.size();j++)
-                       {
-                           String[] getNumber=name.get(j).split("--> ");
-                           String namea=getNumber[1];
+                        for (int j=0;j<name.size();j++)
+                        {
+                            String[] getNumber=name.get(j).split("--> ");
+                            String namea=getNumber[1];
 
-                           if(namea.equalsIgnoreCase(logined_user_phone_no)) {
-                               String amounta=money.get(j);
-                               amount.add(amounta);
+                            if(namea.equalsIgnoreCase(logined_user_phone_no)) {
+                                String amounta=money.get(j);
+                                amount.add(amounta);
 
-                           }
-                       }
+                            }
+                        }
 
-                       if(id.size()==amount.size()) {
-                           UpdateUi();
-                       }
+                        if(id.size()==amount.size()) {
+                            UpdateUi();
+                        }
 
-                   }
-                   else
-                   {
-                       amount.add("0.0");
-                       if(id.size()==amount.size()) {
-                           UpdateUi();
-                       }
+                    }
+                    else
+                    {
+                        amount.add("0.0");
+                        if(id.size()==amount.size()) {
+                            UpdateUi();
+                        }
 
 
-                   }
+                    }
 
-               }
+                }
 
-               @Override
-               public void onCancelled(@NonNull DatabaseError databaseError)
-               {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
 
-               }
+                }
 
-           });
-       }
+            });
+        }
 
 
     }
