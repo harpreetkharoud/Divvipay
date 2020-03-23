@@ -1,5 +1,4 @@
-package com.example.divvipay;
-
+package com.divvipay.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // setTheme(R.style.AppTheme);
+       // setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
