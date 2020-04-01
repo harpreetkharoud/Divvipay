@@ -428,3 +428,70 @@ public class Login_With_Phone extends Fragment implements View.OnClickListener {
         }
     }
 
+
+     @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.buttonStartVerification:
+                if (!validatePhoneNumber()) {
+                    return;
+                }
+
+                String phone=ccp.getSelectedCountryCode()+mPhoneNumberField.getText().toString();
+                startPhoneNumberVerification("+"+phone);
+                mVerifyButton.setEnabled(true);
+                mVerifyButton.setBackgroundResource(R.drawable.button_selector);
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // this code will be executed after 2 seconds
+                        mResendButton.setEnabled(true);
+                        mResendButton.setBackgroundResource(R.drawable.button_selector);
+                    }
+                }, 30000);
+                break;
+            case R.id.buttonVerifyPhone:
+                String code = mVerificationField.getText().toString();
+                if (TextUtils.isEmpty(code)) {
+                    mVerificationField.setError("Cannot be empty.");
+                    return;
+                }
+
+                verifyPhoneNumberWithCode(mVerificationId, code);
+                break;
+            case R.id.buttonResend:
+                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+                break;
+
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        signOutGmail();
+
+    }
+    public void signOutGmail() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+                        revokeAccess();
+                    }
+                });
+    }
+
+    private void revokeAccess() {
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+                    }
+                });
+    }
+
+}
