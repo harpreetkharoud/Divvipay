@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 
 import android.annotation.SuppressLint;

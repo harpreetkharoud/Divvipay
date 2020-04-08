@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 
 import android.app.Notification;
@@ -7,10 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.TaskStackBuilder;
 
 public class NotificationUtils extends ContextWrapper {
     private NotificationManager mManager;

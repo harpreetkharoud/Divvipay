@@ -193,7 +193,7 @@ public class Login_With_Phone extends Fragment implements View.OnClickListener {
                 updateUI(STATE_VERIFY_FAILED);
                 // [END_EXCLUDE]
             }
-            
+
             @Override
             public void onCodeSent(@NonNull String verificationId,
                                    @NonNull PhoneAuthProvider.ForceResendingToken token) {
@@ -279,7 +279,8 @@ public class Login_With_Phone extends Fragment implements View.OnClickListener {
                 token);             // ForceResendingToken from callbacks
     }
     // [END resend_verification]
-       // [START sign_in_with_phone]
+
+    // [START sign_in_with_phone]
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -428,8 +429,7 @@ public class Login_With_Phone extends Fragment implements View.OnClickListener {
         }
     }
 
-
-     @Override
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonStartVerification:

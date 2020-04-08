@@ -1,4 +1,6 @@
-package com.example.divvipay;
+package com.divvipay.app;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -9,8 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,6 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import dagger.multibindings.ElementsIntoSet;
 
 public class google_sign_in extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
@@ -46,7 +48,7 @@ public class google_sign_in extends AppCompatActivity {
 
         if(account!=null)
         {
-            Intent intent=new Intent(google_sign_in.this, com.divvipay.app.MainActivity.class);
+            Intent intent=new Intent(google_sign_in.this,MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -68,8 +70,10 @@ public class google_sign_in extends AppCompatActivity {
 
     }
 
-}
-
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -83,3 +87,25 @@ public class google_sign_in extends AppCompatActivity {
             handleSignInResult(task);
         }
     }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            if(account.getDisplayName()!=null && account.getEmail()!=null)
+            {
+                String Name=account.getDisplayName().toString();
+                Intent intent=new Intent(google_sign_in.this,MainActivity.class);
+                intent.putExtra("Name",Name);
+                startActivity(intent);
+                finish();
+            }
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("tag", "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(this,"Please try Again",Toast.LENGTH_SHORT).show();
+        }
+    }
+}

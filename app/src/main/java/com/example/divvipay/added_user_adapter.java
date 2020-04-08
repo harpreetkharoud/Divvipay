@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,11 +13,6 @@ import java.util.ArrayList;
 
 public class added_user_adapter extends BaseAdapter implements ListAdapter {
 
-
-
-
-
-
     private ArrayList<String> groupUserNo = new ArrayList<String>();
     private Context context;
     int i;
@@ -26,32 +21,23 @@ public class added_user_adapter extends BaseAdapter implements ListAdapter {
         this.groupUserNo=groupUserNo;
         this.context=context;
         this.i=i;
-       // this.i=i;
     }
-
-
 
     @Override
     public int getCount() {
         return groupUserNo.size();
     }
 
-
-
     @Override
     public Object getItem(int pos) {
         return groupUserNo.get(pos);
     }
-
-
 
     @Override
     public long getItemId(int pos) {
         return 0;
         //just return 0 if your list items do not have an Id variable.
     }
-
-
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -61,21 +47,13 @@ public class added_user_adapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.added_user, null);
         }
 
-
-
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
         listItemText.setText(groupUserNo.get(position));
 
-
-
         //Handle buttons and add onClickListeners
         Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
         Button addBtn = (Button)view.findViewById(R.id.add_btn);
-
-
-
-
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -85,8 +63,6 @@ public class added_user_adapter extends BaseAdapter implements ListAdapter {
                 //or some other task
                 i--;
                 notifyDataSetChanged();
-
-
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener(){
@@ -96,8 +72,6 @@ public class added_user_adapter extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
             }
         });
-
-
 
         return view;
     }

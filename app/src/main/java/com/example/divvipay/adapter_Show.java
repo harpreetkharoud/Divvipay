@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.divvipay.app.R;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class adapter_Show extends ArrayAdapter<com.divvipay.app.item> {
     private Context mContext;
     private List<item> list;
 
-    public adapter_Show(Context context, int resourceId, List<item> list) {
+    public adapter_Show (Context context, int resourceId, List<item> list) {
         super(context, resourceId, list);
         mSelectedItemsIds = new SparseBooleanArray();
         mContext = context;

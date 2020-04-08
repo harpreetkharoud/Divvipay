@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -30,13 +30,11 @@ import java.util.List;
  * adapter class for AddPlace
  * */
 
-
 public class add_adapter extends ArrayAdapter<additem> {
     private SparseBooleanArray mSelectedItemsIds;
     private LayoutInflater inflater;
     private Context mContext;
     private List<additem> list;
-    
     AdView mAdView;
 
     public add_adapter (Context context, int resourceId, List<additem> list) {
@@ -48,8 +46,6 @@ public class add_adapter extends ArrayAdapter<additem> {
 
 
     }
-
-
 
     private static class ViewHolder {
         TextView date;
@@ -63,8 +59,7 @@ public class add_adapter extends ArrayAdapter<additem> {
 
         if((position) % 5 == 0 && position != 0)
         {
-            view = inflater.inflate(R.layout.admob,
-                    null);
+            view = inflater.inflate(R.layout.admob, null);
 
             mAdView = view.findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -73,7 +68,7 @@ public class add_adapter extends ArrayAdapter<additem> {
                 @Override
                 public void onAdLoaded() {
                     // Code to be executed when an ad finishes loading.
-                    // Code to be executed when an ad finishes loading.
+
                 }
 
                 @Override
@@ -161,8 +156,6 @@ public class add_adapter extends ArrayAdapter<additem> {
         }
         return view;
     }
-
-
 
     @Override
     public void remove(additem remitm) {

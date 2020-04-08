@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,7 +24,7 @@ public class balance_adapter extends ArrayAdapter<balancedata> {
     private Context mContext;
     private List<balancedata> list;
 
-    public balance_adapter(Context context, int resourceId, List<balancedata> list) {
+    public balance_adapter (Context context, int resourceId, List<balancedata> list) {
         super(context, resourceId, list);
         mSelectedItemsIds = new SparseBooleanArray();
         mContext = context;

@@ -1,4 +1,4 @@
-package com.example.divvipay;
+package com.divvipay.app;
 
 public class additem {
     String name;
@@ -12,8 +12,6 @@ public class additem {
         this.group_id=group_id;
         this.amount=amount;
     }
-
-
 
 
     public String getDate() {
@@ -31,6 +29,7 @@ public class additem {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getGroup_id() {
         return group_id;
